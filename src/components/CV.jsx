@@ -1,5 +1,5 @@
 export default function CV({data}) {
-  const {fullName, phoneNumber, email, address} = data;
+  const {fullName, phoneNumber, email, address, education} = data;
   return (
     <div id="CV">
       <div className="personal-info">
@@ -9,6 +9,10 @@ export default function CV({data}) {
           <span className="email">{email}</span>
           <span className="address">{address}</span>
         </div>
+        <h3>Education</h3>
+        {education.map((ed) => {
+          return (<div key={ed.id}>{ed.school} {ed.degree} {ed.startDate} {ed.endDate} {ed.location}</div>);
+        })}
       </div>
     </div>
   );

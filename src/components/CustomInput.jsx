@@ -9,7 +9,9 @@ export default function CustomInput({name, defaultValue, onChange}) {
       value = {value}
       onChange = {(event) => {
         setValue(event.target.value);
-        onChange(event);
+        if (onChange) {
+          onChange(event);
+        }
       }}
     />
   ); 
