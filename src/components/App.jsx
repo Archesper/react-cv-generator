@@ -20,6 +20,16 @@ export default function App() {
         endDate: "06/2021",
         location: "Mohammedia, Morocco",
       },
+      {
+        id: 1,
+        school: "Maarif",
+        name: "Maarif", // For MultiInput component to distinguish
+        // between "education" and "experience" objects
+        degree: "Bac SMA",
+        startDate: "09/2018",
+        endDate: "06/2021",
+        location: "Mohammedia, Morocco",
+      },
     ],
   };
   const [resumeData, setResumeData] = useState(defaultResumeData);
@@ -51,6 +61,21 @@ export default function App() {
     console.log(newData);
     setResumeData(newData);
   };
+  // This function is for adding new education/experience sections
+  const handleContentAdd = (e) => {
+    e.preventDefault();
+    const targettedSection = e.target.dataset.target;
+    const newItem = {};
+    Array.from(e.target.elements).forEach((el) => {
+      newItem[el.name] = el.value;
+    })
+    newItem.id = resumeData[targettedSection].length;
+    newItem["name"] =
+          targettedSection === "education" ? newItem.school : newItem.company;
+    const newContent = [...resumeData[targettedSection], newItem];
+    const newData = {...resumeData, [targettedSection]: newContent};
+    setResumeData(newData); 
+  };
   return (
     <>
       <h2>Personal details</h2>
@@ -64,6 +89,7 @@ export default function App() {
       <h2>Education</h2>
       <MultiInput
         editHandler={handleTargettedUpdate}
+        addHandler={handleContentAdd}
         target="education"
         fields={["school", "degree", "startDate", "endDate", "location"]}
         content={resumeData.education}

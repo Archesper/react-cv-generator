@@ -2,7 +2,7 @@ import { useState } from "react";
 import CustomInput from "./CustomInput";
 import Info from "./Info";
 
-export default function MultiInput({ target, fields, content, editHandler }) {
+export default function MultiInput({ target, fields, content, editHandler, addHandler }) {
   const [inputState, setInputState] = useState({ action: "default" });
   if (inputState.action === "default") {
     return (
@@ -18,29 +18,35 @@ export default function MultiInput({ target, fields, content, editHandler }) {
             ></Info>
           );
         })}
+        <button onClick={() => setInputState({action: 'add'})}>Add</button>
       </>
     );
-  } else if (inputState.action === "edit") {
-    const contentToEdit = content.find((item) => item.id === inputState.id);
+  } else if (inputState.action === "edit" || inputState.action === "add") {
+    const contentToEdit =
+      inputState.action === "edit"
+        ? content.find((item) => item.id === inputState.id)
+        : null;
     return (
       <>
         <form
           onSubmit={(e) => {
-            editHandler(e);
+            inputState.action === 'edit' ? editHandler(e) : addHandler(e);
             setInputState({ action: "default" });
           }}
           id={target + "Form"}
           data-target={target}
-          data-targetid={inputState.id}
+          {...(inputState.action === "edit"
+            ? { "data-targetid": inputState.id }
+            : {})}
         >
           {fields.map((field, index) => {
             return (
-              <label id={crypto.randomUUID()}>
+              <label key={index}>
                 {" "}
                 {field}
                 <CustomInput
                   name={field}
-                  defaultValue={contentToEdit[field]}
+                  defaultValue={contentToEdit ? contentToEdit[field] : ""}
                 ></CustomInput>
               </label>
             );
