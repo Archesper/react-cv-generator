@@ -76,6 +76,13 @@ export default function App() {
     const newData = {...resumeData, [targettedSection]: newContent};
     setResumeData(newData); 
   };
+  const handleContentDelete = (e) => {
+    const targettedSection = e.target.dataset.target;
+    const targetID = e.target.dataset.targetid;
+    const newContent = resumeData[targettedSection].filter((item) => item.id != targetID);
+    const newData = {...resumeData, [targettedSection]: newContent};
+    setResumeData(newData);
+  }
   return (
     <>
       <h2>Personal details</h2>
@@ -90,6 +97,7 @@ export default function App() {
       <MultiInput
         editHandler={handleTargettedUpdate}
         addHandler={handleContentAdd}
+        deleteHandler={handleContentDelete}
         target="education"
         fields={["school", "degree", "startDate", "endDate", "location"]}
         content={resumeData.education}

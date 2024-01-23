@@ -2,23 +2,30 @@ import { useState } from "react";
 import CustomInput from "./CustomInput";
 import Info from "./Info";
 
-export default function MultiInput({ target, fields, content, editHandler, addHandler }) {
+export default function MultiInput({
+  target,
+  fields,
+  content,
+  editHandler,
+  addHandler,
+  deleteHandler,
+}) {
   const [inputState, setInputState] = useState({ action: "default" });
   if (inputState.action === "default") {
     return (
       <>
         {content.map((item) => {
           return (
-            <Info
-              onClick={() => {
-                setInputState({ action: "edit", id: item.id });
-              }}
-              key={item.id}
-              name={item.name}
-            ></Info>
+              <Info
+                onClick={() => {
+                  setInputState({ action: "edit", id: item.id });
+                }}
+                key={item.id}
+                name={item.name}
+              ></Info>
           );
         })}
-        <button onClick={() => setInputState({action: 'add'})}>Add</button>
+        <button onClick={() => setInputState({ action: "add" })}>Add</button>
       </>
     );
   } else if (inputState.action === "edit" || inputState.action === "add") {
@@ -30,7 +37,7 @@ export default function MultiInput({ target, fields, content, editHandler, addHa
       <>
         <form
           onSubmit={(e) => {
-            inputState.action === 'edit' ? editHandler(e) : addHandler(e);
+            inputState.action === "edit" ? editHandler(e) : addHandler(e);
             setInputState({ action: "default" });
           }}
           id={target + "Form"}
@@ -55,6 +62,11 @@ export default function MultiInput({ target, fields, content, editHandler, addHa
             cancel
           </button>
           <button type="submit">Confirm</button>
+          {inputState.action === "edit" && (
+            <button data-target={target} data-targetid={inputState.id} onClick={deleteHandler}>
+              Delete
+            </button>
+          )}
         </form>
       </>
     );
