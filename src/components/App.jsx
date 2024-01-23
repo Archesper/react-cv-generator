@@ -19,6 +19,7 @@ export default function App() {
         startDate: "09/2018",
         endDate: "06/2021",
         location: "Mohammedia, Morocco",
+        visible: true
       },
       {
         id: 1,
@@ -29,6 +30,7 @@ export default function App() {
         startDate: "09/2018",
         endDate: "06/2021",
         location: "Mohammedia, Morocco",
+        visible: true
       },
     ],
   };
@@ -52,6 +54,7 @@ export default function App() {
           newItem[el.name] = el.value;
         });
         newItem["id"] = Number(targetID);
+        newItem['visible'] = item.visible;
         newItem["name"] =
           targettedSection === "education" ? newItem.school : newItem.company;
         return newItem;
@@ -70,6 +73,7 @@ export default function App() {
       newItem[el.name] = el.value;
     })
     newItem.id = resumeData[targettedSection].length;
+    newItem.visible = true;
     newItem["name"] =
           targettedSection === "education" ? newItem.school : newItem.company;
     const newContent = [...resumeData[targettedSection], newItem];
@@ -83,6 +87,21 @@ export default function App() {
     const newData = {...resumeData, [targettedSection]: newContent};
     setResumeData(newData);
   }
+  const handleVisibilityToggle = (e) => {
+    console.log(e.target.dataset);
+    const targettedSection = e.target.dataset.target;
+    const targetID = e.target.dataset.targetid;
+    const newItem = {...resumeData[targettedSection][targetID], visible: !resumeData[targettedSection][targetID].visible};
+    const newContent = resumeData[targettedSection].map((item) => {
+      if (item.id != targetID) {
+        return item;
+      } else {
+        return newItem;
+      }
+    })
+    const newData = {...resumeData, [targettedSection]: newContent};
+    setResumeData(newData);
+  };
   return (
     <>
       <h2>Personal details</h2>
@@ -98,6 +117,7 @@ export default function App() {
         editHandler={handleTargettedUpdate}
         addHandler={handleContentAdd}
         deleteHandler={handleContentDelete}
+        visiblityToggler={handleVisibilityToggle}
         target="education"
         fields={["school", "degree", "startDate", "endDate", "location"]}
         content={resumeData.education}

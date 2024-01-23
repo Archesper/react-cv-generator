@@ -9,6 +9,7 @@ export default function MultiInput({
   editHandler,
   addHandler,
   deleteHandler,
+  visiblityToggler
 }) {
   const [inputState, setInputState] = useState({ action: "default" });
   if (inputState.action === "default") {
@@ -17,6 +18,10 @@ export default function MultiInput({
         {content.map((item) => {
           return (
               <Info
+                visibilityToggler={visiblityToggler}
+                visible={item.visible}
+                target={target}
+                targetid={item.id}
                 onClick={() => {
                   setInputState({ action: "edit", id: item.id });
                 }}

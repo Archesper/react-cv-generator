@@ -11,7 +11,7 @@ export default function CV({data}) {
         </div>
         <h3>Education</h3>
         {education.map((ed) => {
-          return (<div key={ed.id}>{ed.school} {ed.degree} {ed.startDate} {ed.endDate} {ed.location}</div>);
+          return (ed.visible && <div key={ed.id}>{ed.school} {ed.degree} {ed.startDate} {ed.endDate} {ed.location}</div>);
         })}
       </div>
     </div>
