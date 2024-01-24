@@ -1,6 +1,7 @@
 import CV from "./CV";
 import InfoInput from "./InfoInput.jsx";
 import MultiInput from "./MultiInput";
+import Togglable from "./togglable";
 import { useState } from "react";
 
 export default function App() {
@@ -19,7 +20,7 @@ export default function App() {
         startDate: "09/2018",
         endDate: "06/2021",
         location: "Mohammedia, Morocco",
-        visible: true
+        visible: true,
       },
       {
         id: 1,
@@ -30,7 +31,20 @@ export default function App() {
         startDate: "09/2018",
         endDate: "06/2021",
         location: "Mohammedia, Morocco",
-        visible: true
+        visible: true,
+      },
+    ],
+    experience: [
+      {
+        id: 0,
+        companyName: "Orange",
+        name: "Orange",
+        positionTitle: "Backend Engineer",
+        startDate: "07/2024",
+        endDate: "present",
+        location: "Casablanca, morocco",
+        description: "ratatata",
+        visible: true,
       },
     ],
   };
@@ -54,9 +68,11 @@ export default function App() {
           newItem[el.name] = el.value;
         });
         newItem["id"] = Number(targetID);
-        newItem['visible'] = item.visible;
+        newItem["visible"] = item.visible;
         newItem["name"] =
-          targettedSection === "education" ? newItem.school : newItem.company;
+          targettedSection === "education"
+            ? newItem.school
+            : newItem.companyName;
         return newItem;
       }
     });
@@ -71,36 +87,47 @@ export default function App() {
     const newItem = {};
     Array.from(e.target.elements).forEach((el) => {
       newItem[el.name] = el.value;
-    })
+    });
     newItem.id = resumeData[targettedSection].length;
     newItem.visible = true;
     newItem["name"] =
-          targettedSection === "education" ? newItem.school : newItem.company;
+      targettedSection === "education" ? newItem.school : newItem.companyName;
     const newContent = [...resumeData[targettedSection], newItem];
-    const newData = {...resumeData, [targettedSection]: newContent};
-    setResumeData(newData); 
+    const newData = { ...resumeData, [targettedSection]: newContent };
+    setResumeData(newData);
   };
   const handleContentDelete = (e) => {
     const targettedSection = e.target.dataset.target;
     const targetID = e.target.dataset.targetid;
-    const newContent = resumeData[targettedSection].filter((item) => item.id != targetID);
-    const newData = {...resumeData, [targettedSection]: newContent};
+    const newContent = resumeData[targettedSection].filter(
+      (item) => item.id != targetID
+    );
+    const newData = { ...resumeData, [targettedSection]: newContent };
     setResumeData(newData);
-  }
+  };
   const handleVisibilityToggle = (e) => {
     console.log(e.target.dataset);
     const targettedSection = e.target.dataset.target;
     const targetID = e.target.dataset.targetid;
-    const newItem = {...resumeData[targettedSection][targetID], visible: !resumeData[targettedSection][targetID].visible};
+    const newItem = {
+      ...resumeData[targettedSection][targetID],
+      visible: !resumeData[targettedSection][targetID].visible,
+    };
     const newContent = resumeData[targettedSection].map((item) => {
       if (item.id != targetID) {
         return item;
       } else {
         return newItem;
       }
-    })
-    const newData = {...resumeData, [targettedSection]: newContent};
+    });
+    const newData = { ...resumeData, [targettedSection]: newContent };
     setResumeData(newData);
+  };
+  const eventHandlers = {
+    addHandler: handleContentAdd,
+    deleteHandler: handleContentDelete,
+    editHandler: handleTargettedUpdate,
+    visiblityToggler: handleVisibilityToggle,
   };
   return (
     <>
@@ -112,16 +139,29 @@ export default function App() {
         email={resumeData.email}
         address={resumeData.address}
       ></InfoInput>
-      <h2>Education</h2>
-      <MultiInput
-        editHandler={handleTargettedUpdate}
-        addHandler={handleContentAdd}
-        deleteHandler={handleContentDelete}
-        visiblityToggler={handleVisibilityToggle}
-        target="education"
-        fields={["school", "degree", "startDate", "endDate", "location"]}
-        content={resumeData.education}
-      ></MultiInput>
+      <Togglable title="Education">
+        <MultiInput
+          {...eventHandlers}
+          target="education"
+          fields={["school", "degree", "startDate", "endDate", "location"]}
+          content={resumeData.education}
+        ></MultiInput>
+      </Togglable>
+      <Togglable title="Experience">
+        <MultiInput
+          {...eventHandlers}
+          target="experience"
+          fields={[
+            "companyName",
+            "positionTitle",
+            "startDate",
+            "endDate",
+            "location",
+            "description",
+          ]}
+          content={resumeData.experience}
+        ></MultiInput>
+      </Togglable>
       <CV data={resumeData}></CV>
     </>
   );

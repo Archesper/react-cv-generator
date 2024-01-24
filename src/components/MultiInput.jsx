@@ -9,7 +9,7 @@ export default function MultiInput({
   editHandler,
   addHandler,
   deleteHandler,
-  visiblityToggler
+  visiblityToggler,
 }) {
   const [inputState, setInputState] = useState({ action: "default" });
   if (inputState.action === "default") {
@@ -17,17 +17,17 @@ export default function MultiInput({
       <>
         {content.map((item) => {
           return (
-              <Info
-                visibilityToggler={visiblityToggler}
-                visible={item.visible}
-                target={target}
-                targetid={item.id}
-                onClick={() => {
-                  setInputState({ action: "edit", id: item.id });
-                }}
-                key={item.id}
-                name={item.name}
-              ></Info>
+            <Info
+              visibilityToggler={visiblityToggler}
+              visible={item.visible}
+              target={target}
+              targetid={item.id}
+              onClick={() => {
+                setInputState({ action: "edit", id: item.id });
+              }}
+              key={item.id}
+              name={item.name}
+            ></Info>
           );
         })}
         <button onClick={() => setInputState({ action: "add" })}>Add</button>
@@ -42,6 +42,7 @@ export default function MultiInput({
       <>
         <form
           onSubmit={(e) => {
+            e.preventDefault();
             inputState.action === "edit" ? editHandler(e) : addHandler(e);
             setInputState({ action: "default" });
           }}
@@ -63,12 +64,23 @@ export default function MultiInput({
               </label>
             );
           })}
-          <button onClick={() => setInputState({ action: "default" })}>
+          {/*The buttons beside the submit button have type="button"
+           to fix the "form submission cancelled"
+           warning when submitting form with the Enter key*/}
+          <button
+            type="button"
+            onClick={() => setInputState({ action: "default" })}
+          >
             cancel
           </button>
           <button type="submit">Confirm</button>
           {inputState.action === "edit" && (
-            <button data-target={target} data-targetid={inputState.id} onClick={deleteHandler}>
+            <button
+              type="button"
+              data-target={target}
+              data-targetid={inputState.id}
+              onClick={deleteHandler}
+            >
               Delete
             </button>
           )}

@@ -1,0 +1,15 @@
+.togglableContent {
+  background-color: aquamarine;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-25px);
+  transition: transform 0.25s ease-in, opacity 0.25s ease-in;
+}
+
+.toggled {
+  height: auto;
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 0.25s ease-in, opacity 0.25s ease-in;
+}
