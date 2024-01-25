@@ -5,7 +5,7 @@ export default function Togglable({title, children}) {
   const [isActive, setIsActive] = useState(true);
   return (
     <>
-      <h2 onClick={()=> setIsActive(!isActive)}>{title}</h2>
+      <h2 className="section-expander" onClick={()=> setIsActive(!isActive)}>{title}</h2>
       <div className={"togglableContent " + (isActive ? 'toggled' : '')}>{children}</div>
     </>
   );

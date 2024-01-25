@@ -143,29 +143,33 @@ export default function App() {
               address={resumeData.address}
             ></InfoInput>
           </form>
-          <Togglable title="Education">
-            <MultiInput
-              {...eventHandlers}
-              target="education"
-              fields={["school", "degree", "startDate", "endDate", "location"]}
-              content={resumeData.education}
-            ></MultiInput>
-          </Togglable>
-          <Togglable title="Experience">
-            <MultiInput
-              {...eventHandlers}
-              target="experience"
-              fields={[
-                "companyName",
-                "positionTitle",
-                "startDate",
-                "endDate",
-                "location",
-                "description",
-              ]}
-              content={resumeData.experience}
-            ></MultiInput>
-          </Togglable>
+          <section className="detail-section">
+            <Togglable title="Education">
+              <MultiInput
+                {...eventHandlers}
+                target="education"
+                fields={["school", "degree", "startDate", "endDate", "location"]}
+                content={resumeData.education}
+              ></MultiInput>
+            </Togglable>
+          </section>
+          <section className="detail-section">
+            <Togglable title="Experience">
+              <MultiInput
+                {...eventHandlers}
+                target="experience"
+                fields={[
+                  "companyName",
+                  "positionTitle",
+                  "startDate",
+                  "endDate",
+                  "location",
+                  "description",
+                ]}
+                content={resumeData.experience}
+              ></MultiInput>
+            </Togglable>
+          </section>
         </div>
         <CV data={resumeData}></CV>
       </main>

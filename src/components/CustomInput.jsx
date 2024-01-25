@@ -9,9 +9,10 @@ export default function CustomInput({
   const [value, setValue] = useState(defaultValue);
   return (
     <>
-      <label for={name}> {labelName}</label>
+      <label htmlFor={name}> {labelName}</label>
       <input
         name={name}
+        id={name}
         type="text"
         value={value}
         onChange={(event) => {

@@ -15,22 +15,29 @@ export default function MultiInput({
   if (inputState.action === "default") {
     return (
       <>
-        {content.map((item) => {
-          return (
-            <Info
-              visibilityToggler={visiblityToggler}
-              visible={item.visible}
-              target={target}
-              targetid={item.id}
-              onClick={() => {
-                setInputState({ action: "edit", id: item.id });
-              }}
-              key={item.id}
-              name={item.name}
-            ></Info>
-          );
-        })}
-        <button onClick={() => setInputState({ action: "add" })}>Add</button>
+        <div className="info-container">
+          {content.map((item) => {
+            return (
+              <Info
+                visibilityToggler={visiblityToggler}
+                visible={item.visible}
+                target={target}
+                targetid={item.id}
+                onClick={() => {
+                  setInputState({ action: "edit", id: item.id });
+                }}
+                key={item.id}
+                name={item.name}
+              ></Info>
+            );
+          })}
+        </div>
+        <button
+          className="info-add-btn"
+          onClick={() => setInputState({ action: "add" })}
+        >
+          + Add
+        </button>
       </>
     );
   } else if (inputState.action === "edit" || inputState.action === "add") {
