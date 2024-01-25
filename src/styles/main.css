@@ -1,0 +1,75 @@
+@font-face {
+  font-family: 'NotoSans';
+  src: url(../assets/NotoSans-Regular.ttf);
+}
+@font-face {
+  font-family: 'NotoSansSemiBold';
+  src: url(../assets/NotoSans-SemiBold.ttf);
+}
+@font-face {
+  font-family: 'NotoSansBold';
+  src: url(../assets/NotoSans-Bold.ttf);
+}
+
+:root {
+  font-size: 16px;
+  --main-bg-color: #F3F4F6;
+  --secondary-bg-color: #FFFFFF;
+  --primary-font: 'NotoSans';
+  --primary-font-semi-bold: 'NotoSansSemiBold';
+  --primary-font-bold: 'NotoSansBold';
+  --primary-header-size: 2rem;
+  --secondary-header-size: 1.5rem;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  font-family: var(--primary-font), sans-serif;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+h1, h2, h3 {
+  font-family: var(--primary-font-bold)
+}
+
+h1 {
+  font-size: var(--primary-header-size);
+}
+
+h2 {
+  font-size: var(--secondary-header-size);
+}
+
+main input {
+  background-color: var(--main-bg-color);
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  font-family: inherit;
+  transition: border .25s, box-shadow .25s;
+  border: 1.5px solid transparent;
+}
+
+main input:focus {
+  outline: none;
+  border-color: rgb(99, 99, 236);
+  box-shadow: 0px 3px 15px rgba(59, 131, 246, 0.2);
+}
+
+#personal-details {
+  background-color: var(--secondary-bg-color);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 12px;
+}
+
+label {
+  font-family: 'NotoSansSemiBold', sans-serif;
+}

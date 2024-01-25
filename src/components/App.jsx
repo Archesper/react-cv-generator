@@ -130,39 +130,44 @@ export default function App() {
     visiblityToggler: handleVisibilityToggle,
   };
   return (
-    <>
-      <h2>Personal details</h2>
-      <InfoInput
-        stateUpdater={handlePersonalDataUpdate}
-        fullName={resumeData.fullName}
-        phoneNumber={resumeData.phoneNumber}
-        email={resumeData.email}
-        address={resumeData.address}
-      ></InfoInput>
-      <Togglable title="Education">
-        <MultiInput
-          {...eventHandlers}
-          target="education"
-          fields={["school", "degree", "startDate", "endDate", "location"]}
-          content={resumeData.education}
-        ></MultiInput>
-      </Togglable>
-      <Togglable title="Experience">
-        <MultiInput
-          {...eventHandlers}
-          target="experience"
-          fields={[
-            "companyName",
-            "positionTitle",
-            "startDate",
-            "endDate",
-            "location",
-            "description",
-          ]}
-          content={resumeData.experience}
-        ></MultiInput>
-      </Togglable>
-      <CV data={resumeData}></CV>
-    </>
+
+      <main>
+        <div id="data-input">
+          <form id="personal-details">
+            <h2>Personal details</h2>
+            <InfoInput
+              stateUpdater={handlePersonalDataUpdate}
+              fullName={resumeData.fullName}
+              phoneNumber={resumeData.phoneNumber}
+              email={resumeData.email}
+              address={resumeData.address}
+            ></InfoInput>
+          </form>
+          <Togglable title="Education">
+            <MultiInput
+              {...eventHandlers}
+              target="education"
+              fields={["school", "degree", "startDate", "endDate", "location"]}
+              content={resumeData.education}
+            ></MultiInput>
+          </Togglable>
+          <Togglable title="Experience">
+            <MultiInput
+              {...eventHandlers}
+              target="experience"
+              fields={[
+                "companyName",
+                "positionTitle",
+                "startDate",
+                "endDate",
+                "location",
+                "description",
+              ]}
+              content={resumeData.experience}
+            ></MultiInput>
+          </Togglable>
+        </div>
+        <CV data={resumeData}></CV>
+      </main>
   );
 }
