@@ -1,5 +1,6 @@
 import { useState } from "react";
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import  VisibilityOffOutlinedIcon  from "@mui/icons-material/VisibilityOffOutlined";
 
 export default function Info({
   name,
@@ -17,11 +18,12 @@ export default function Info({
         data-target={target}
         data-targetid={targetid}
         onClick={(e) => {
+          console.log(e.target);
           e.stopPropagation();
           visibilityToggler(e);
         }}
       >
-        <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
+        {visible ? <VisibilityOutlinedIcon></VisibilityOutlinedIcon> : <VisibilityOffOutlinedIcon> </VisibilityOffOutlinedIcon>}
       </button>
 
     </div>

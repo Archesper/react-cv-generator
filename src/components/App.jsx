@@ -106,9 +106,9 @@ export default function App() {
     setResumeData(newData);
   };
   const handleVisibilityToggle = (e) => {
-    console.log(e.target.dataset);
-    const targettedSection = e.target.dataset.target;
-    const targetID = e.target.dataset.targetid;
+    console.log(e.currentTarget.dataset);
+    const targettedSection = e.currentTarget.dataset.target;
+    const targetID = e.currentTarget.dataset.targetid;
     const newItem = {
       ...resumeData[targettedSection][targetID],
       visible: !resumeData[targettedSection][targetID].visible,
