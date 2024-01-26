@@ -13,3 +13,24 @@
   transform: translateY(0);
   transition: transform 0.25s ease-in, opacity 0.25s ease-in;
 }
+
+.section-expander {
+  cursor: pointer;
+}
+
+.section-expander svg {
+  position: absolute;
+  right: 22px;
+  cursor: pointer;
+  color: rgb(78, 78, 78);
+  transition: transform .25s ease;
+}
+
+.section-expander svg:hover {
+  color: black;
+  transform: rotateZ(-180deg);
+}
+
+.icon-collapsed {
+  transform: rotateZ(-180deg);
+}

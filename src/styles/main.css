@@ -91,6 +91,7 @@ main input:focus {
 }
 
 .section-expander {
+  position: relative;
   display: flex;
   place-content: center;
   padding: 24px;
