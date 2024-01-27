@@ -31,6 +31,7 @@ body {
   background-color: var(--main-bg-color);
   font-family: var(--primary-font), sans-serif;
   box-sizing: border-box;
+  line-height: 1.5rem;
 }
 
 main {

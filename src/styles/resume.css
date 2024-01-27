@@ -1,7 +1,6 @@
 #CV {
-  width: 60vw;
   background-color: var(--secondary-bg-color);
-  max-width: 21cm;
+  width: 21cm;
   height: 29.7cm;
   overflow: hidden;
 }
@@ -16,21 +15,50 @@
   gap: 14px;
 }
 
+.resume-section {
+  padding: 0 56px;
+  margin-top: 40px;
+}
 
+.resume-header-text {
+  padding: 6px 0;
+  color: #124562;
+  margin-bottom: 14px;
+  text-align: center;
+  background-color: var(--main-bg-color);
+}
 
 .contact-info {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
+  gap: 18px;
+  margin: auto;
 }
 
 .contact-wrapper {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .contact-wrapper svg {
-  width: 16px;
+  width: 18px;
+}
+
+.info-group {
+  display: grid;
+  align-items: center;
+  grid-template-columns: minmax(200px, 1fr) 2fr ;
+  gap: 8px 18px;
+  margin-bottom: 24px;
+}
+
+.info-group-header {
+  font-size: 18px;
+  font-family: var(--primary-font-semi-bold);
+}
+
+.info-group-description {
+  grid-column-start: 2;
 }

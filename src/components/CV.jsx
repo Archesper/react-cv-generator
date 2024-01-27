@@ -9,16 +9,16 @@ export default function CV({ data }) {
       <div className="personal-info">
         <h1 className="resume-name">{fullName}</h1>
         <div className="contact-info">
-          {phoneNumber && (
-            <div className="contact-wrapper">
-              <LocalPhoneIcon></LocalPhoneIcon>
-              <span className="phone-number"> {phoneNumber}</span>
-            </div>
-          )}
           {email && (
             <div className="contact-wrapper">
               <EmailIcon></EmailIcon>
               <span className="email"> {email}</span>
+            </div>
+          )}
+          {phoneNumber && (
+            <div className="contact-wrapper">
+              <LocalPhoneIcon></LocalPhoneIcon>
+              <span className="phone-number"> {phoneNumber}</span>
             </div>
           )}
           {address && (
@@ -29,27 +29,37 @@ export default function CV({ data }) {
           )}
         </div>
       </div>
-      <h3>Education</h3>
-      {education.map((ed) => {
-        return (
-          ed.visible && (
-            <div key={ed.id}>
-              {ed.school} {ed.degree} {ed.startDate} {ed.endDate} {ed.location}
-            </div>
-          )
-        );
-      })}
-      <h3>Experience</h3>
-      {experience.map((exp) => {
-        return (
-          exp.visible && (
-            <div key={exp.id}>
-              {exp.companyName} {exp.positionTitle} {exp.startDate}{" "}
-              {exp.endDate} {exp.location} {exp.description}
-            </div>
-          )
-        );
-      })}
+      <div className="resume-section">
+        <h3 className="resume-header-text">Education</h3>
+        {education.map((ed) => {
+          return (
+            ed.visible && (
+              <div className="info-group" key={ed.id}>
+                <p>{ed.startDate} - {ed.endDate}</p>
+                <p className="info-group-header">{ed.school}</p>
+                <p>{ed.location}</p>
+                <p>{ed.degree}</p>
+              </div>
+            )
+          );
+        })}
+      </div>
+      <div className="resume-section">
+        <h3 className="resume-header-text">Experience</h3>
+        {experience.map((exp) => {
+          return (
+            exp.visible && (
+              <div className="info-group" key={exp.id}>
+                <p>{exp.startDate} - {exp.endDate}</p>
+                <p className="info-group-header">{exp.companyName}</p>
+                <p>{exp.location}</p>
+                <p>{exp.positionTitle}</p>
+                <p className="info-group-description">{exp.description}</p>
+              </div>
+            )
+          );
+        })}
+      </div>
     </div>
   );
 }
