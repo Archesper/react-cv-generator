@@ -35,9 +35,7 @@ body {
 
 main {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
+  padding: 2rem 1.5rem;
 
 }
 
@@ -78,7 +76,9 @@ main input:focus {
 #data-input {
   display: flex;
   flex-direction: column;
+  padding: 0 4rem;
   gap: 1.5rem;
+  width: 40vw;
 }
 
 #personal-details, #education-form {

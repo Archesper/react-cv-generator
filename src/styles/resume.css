@@ -1,0 +1,36 @@
+#CV {
+  width: 60vw;
+  background-color: var(--secondary-bg-color);
+  max-width: 21cm;
+  height: 29.7cm;
+  overflow: hidden;
+}
+
+.personal-info {
+  display: flex;
+  padding: 32px 24px;
+  background-color: #124562;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  gap: 14px;
+}
+
+
+
+.contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.contact-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.contact-wrapper svg {
+  width: 16px;
+}
