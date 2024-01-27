@@ -47,7 +47,7 @@ h1 {
   font-size: var(--primary-header-size);
 }
 
-h2 {
+h2, h3 {
   font-size: var(--secondary-header-size);
 }
 
@@ -57,7 +57,7 @@ button {
   font: inherit;
 }
 
-main input {
+main input, main textarea {
   background-color: var(--main-bg-color);
   padding: 10px;
   border-radius: var(--standard-border-radius);
@@ -67,7 +67,7 @@ main input {
   border: 1.5px solid transparent;
 }
 
-main input:focus {
+main input:focus, main textarea:focus {
   outline: none;
   border-color: rgb(99, 99, 236);
   box-shadow: 0px 3px 15px rgba(59, 131, 246, 0.2);
@@ -81,7 +81,7 @@ main input:focus {
   width: 40vw;
 }
 
-#personal-details, #education-form {
+#personal-details, .detail-form {
   background-color: var(--secondary-bg-color);
   display: flex;
   flex-direction: column;

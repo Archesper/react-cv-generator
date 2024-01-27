@@ -53,7 +53,7 @@ export default function MultiInput({
             inputState.action === "edit" ? editHandler(e) : addHandler(e);
             setInputState({ action: "default" });
           }}
-          id={target + "-form"}
+          className='detail-form'
           data-target={target}
           {...(inputState.action === "edit"
             ? { "data-targetid": inputState.id }
@@ -63,9 +63,12 @@ export default function MultiInput({
             return (
 
                 <CustomInput
-                  labelName={field}
-                  name={field}
-                  defaultValue={contentToEdit ? contentToEdit[field] : ""}
+                  key={index}
+                  labelName={field.name}
+                  name={field.name}
+                  {...(field.type ? {type: field.type} : {})}
+                  {...(field.isTextArea ? {isTextArea: field.isTextArea} : {})}
+                  defaultValue={contentToEdit ? contentToEdit[field.name] : ""}
                 ></CustomInput>
 
             );

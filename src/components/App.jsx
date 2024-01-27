@@ -148,7 +148,13 @@ export default function App() {
               <MultiInput
                 {...eventHandlers}
                 target="education"
-                fields={["school", "degree", "startDate", "endDate", "location"]}
+                fields={[
+                  { name: "school" },
+                  { name: "degree" },
+                  { name: "startDate" },
+                  { name: "endDate" },
+                  { name: "location" }
+                ]}
                 content={resumeData.education}
               ></MultiInput>
             </Togglable>
@@ -159,12 +165,12 @@ export default function App() {
                 {...eventHandlers}
                 target="experience"
                 fields={[
-                  "companyName",
-                  "positionTitle",
-                  "startDate",
-                  "endDate",
-                  "location",
-                  "description",
+                  { name: "companyName" },
+                  { name: "positionTitle" },
+                  { name: "startDate" },
+                  { name: "endDate" },
+                  { name: "location" },
+                  { name: "description", isTextArea: true }
                 ]}
                 content={resumeData.experience}
               ></MultiInput>
