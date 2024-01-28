@@ -3,6 +3,7 @@ import InfoInput from "./InfoInput.jsx";
 import MultiInput from "./MultiInput";
 import Togglable from "./togglable";
 import { useState } from "react";
+import PrintIcon from '@mui/icons-material/PrintOutlined';
 
 export default function App() {
   const defaultResumeData = {
@@ -131,53 +132,56 @@ export default function App() {
   };
   return (
 
-      <main>
-        <div id="data-input">
-          <form id="personal-details">
-            <h2>Personal details</h2>
-            <InfoInput
-              stateUpdater={handlePersonalDataUpdate}
-              fullName={resumeData.fullName}
-              phoneNumber={resumeData.phoneNumber}
-              email={resumeData.email}
-              address={resumeData.address}
-            ></InfoInput>
-          </form>
-          <section className="detail-section">
-            <Togglable title="Education">
-              <MultiInput
-                {...eventHandlers}
-                target="education"
-                fields={[
-                  { name: "school" },
-                  { name: "degree" },
-                  { name: "startDate" },
-                  { name: "endDate" },
-                  { name: "location" }
-                ]}
-                content={resumeData.education}
-              ></MultiInput>
-            </Togglable>
-          </section>
-          <section className="detail-section">
-            <Togglable title="Experience">
-              <MultiInput
-                {...eventHandlers}
-                target="experience"
-                fields={[
-                  { name: "companyName" },
-                  { name: "positionTitle" },
-                  { name: "startDate" },
-                  { name: "endDate" },
-                  { name: "location" },
-                  { name: "description", isTextArea: true }
-                ]}
-                content={resumeData.experience}
-              ></MultiInput>
-            </Togglable>
-          </section>
-        </div>
-        <CV data={resumeData}></CV>
-      </main>
+      <>
+        <button onClick={window.print} className="print-btn"><PrintIcon></PrintIcon></button>
+        <main>
+          <div id="data-input">
+            <form id="personal-details">
+              <h2>Personal details</h2>
+              <InfoInput
+                stateUpdater={handlePersonalDataUpdate}
+                fullName={resumeData.fullName}
+                phoneNumber={resumeData.phoneNumber}
+                email={resumeData.email}
+                address={resumeData.address}
+              ></InfoInput>
+            </form>
+            <section className="detail-section">
+              <Togglable title="Education">
+                <MultiInput
+                  {...eventHandlers}
+                  target="education"
+                  fields={[
+                    { name: "school" },
+                    { name: "degree" },
+                    { name: "startDate" },
+                    { name: "endDate" },
+                    { name: "location" }
+                  ]}
+                  content={resumeData.education}
+                ></MultiInput>
+              </Togglable>
+            </section>
+            <section className="detail-section">
+              <Togglable title="Experience">
+                <MultiInput
+                  {...eventHandlers}
+                  target="experience"
+                  fields={[
+                    { name: "companyName" },
+                    { name: "positionTitle" },
+                    { name: "startDate" },
+                    { name: "endDate" },
+                    { name: "location" },
+                    { name: "description", isTextArea: true }
+                  ]}
+                  content={resumeData.experience}
+                ></MultiInput>
+              </Togglable>
+            </section>
+          </div>
+          <CV data={resumeData}></CV>
+        </main>
+      </>
   );
 }

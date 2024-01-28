@@ -155,3 +155,46 @@ main input:focus, main textarea:focus {
 label {
   font-family: 'NotoSansSemiBold', sans-serif;
 }
+
+.print-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: rgb(93, 93, 196);
+  display: grid;
+  place-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.print-btn:hover {
+  opacity: 1;
+}
+
+.print-btn svg {
+  color: white;
+  width: 48px;
+  height: 48px;
+}
+
+@media print {
+  @page {
+    size: A4;
+  }
+  html, body {
+    height:100vh; 
+    overflow: hidden;
+    visibility: hidden;
+  }
+  #CV {
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+  }
+
+
+}
