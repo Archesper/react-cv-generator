@@ -89,23 +89,27 @@ export default function MultiInput({
           {/*The buttons beside the submit button have type="button"
            to fix the "form submission cancelled"
            warning when submitting form with the Enter key*/}
-          <button
-            type="button"
-            onClick={() => setInputState({ action: "default" })}
-          >
-            cancel
-          </button>
-          <button type="submit">Confirm</button>
-          {inputState.action === "edit" && (
+          <div className="form-btn-grp">
             <button
               type="button"
-              data-target={target}
-              data-targetid={inputState.id}
-              onClick={deleteHandler}
+              class="cancel-btn"
+              onClick={() => setInputState({ action: "default" })}
             >
-              Delete
+              Cancel
             </button>
-          )}
+            <button type="submit" class="confirm-btn">Confirm</button>
+            {inputState.action === "edit" && (
+              <button
+                type="button"
+                class='delete-btn'
+                data-target={target}
+                data-targetid={inputState.id}
+                onClick={deleteHandler}
+              >
+                Delete
+              </button>
+            )}
+          </div>
         </form>
       </>
     );
