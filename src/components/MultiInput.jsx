@@ -11,6 +11,21 @@ export default function MultiInput({
   deleteHandler,
   visiblityToggler,
 }) {
+  // Helper function, converts camelCase to Camel Case
+  const camelToProper = (str) => {
+    let firstWord = str.charAt(0).toUpperCase();
+    let secondWord = "";
+    let i = 1;
+    while (
+      str.charAt(i) === str.charAt(i).toLowerCase() &&
+      str.charAt(i) !== str.charAt(i).toUpperCase()
+    ) {
+      firstWord += str.charAt(i);
+      i += 1;
+    }
+    secondWord = str.slice(i);
+    return firstWord + " " + secondWord
+  };
   const [inputState, setInputState] = useState({ action: "default" });
   if (inputState.action === "default") {
     return (
@@ -53,7 +68,7 @@ export default function MultiInput({
             inputState.action === "edit" ? editHandler(e) : addHandler(e);
             setInputState({ action: "default" });
           }}
-          className='detail-form'
+          className="detail-form"
           data-target={target}
           {...(inputState.action === "edit"
             ? { "data-targetid": inputState.id }
@@ -61,16 +76,14 @@ export default function MultiInput({
         >
           {fields.map((field, index) => {
             return (
-
-                <CustomInput
-                  key={index}
-                  labelName={field.name}
-                  name={field.name}
-                  {...(field.type ? {type: field.type} : {})}
-                  {...(field.isTextArea ? {isTextArea: field.isTextArea} : {})}
-                  defaultValue={contentToEdit ? contentToEdit[field.name] : ""}
-                ></CustomInput>
-
+              <CustomInput
+                key={index}
+                labelName={camelToProper(field.name)}
+                name={field.name}
+                {...(field.type ? { type: field.type } : {})}
+                {...(field.isTextArea ? { isTextArea: field.isTextArea } : {})}
+                defaultValue={contentToEdit ? contentToEdit[field.name] : ""}
+              ></CustomInput>
             );
           })}
           {/*The buttons beside the submit button have type="button"
