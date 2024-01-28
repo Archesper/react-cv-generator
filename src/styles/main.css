@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'NotoSans';
+  font-family: "NotoSans";
   src: url(../assets/NotoSans-Regular.ttf);
 }
 @font-face {
-  font-family: 'NotoSansSemiBold';
+  font-family: "NotoSansSemiBold";
   src: url(../assets/NotoSans-SemiBold.ttf);
 }
 @font-face {
-  font-family: 'NotoSansBold';
+  font-family: "NotoSansBold";
   src: url(../assets/NotoSans-Bold.ttf);
 }
 
@@ -17,11 +17,11 @@
 
 :root {
   font-size: 16px;
-  --main-bg-color: #F3F4F6;
-  --secondary-bg-color: #FFFFFF;
-  --primary-font: 'NotoSans';
-  --primary-font-semi-bold: 'NotoSansSemiBold';
-  --primary-font-bold: 'NotoSansBold';
+  --main-bg-color: #f3f4f6;
+  --secondary-bg-color: #ffffff;
+  --primary-font: "NotoSans";
+  --primary-font-semi-bold: "NotoSansSemiBold";
+  --primary-font-bold: "NotoSansBold";
   --primary-header-size: 2rem;
   --secondary-header-size: 1.25rem;
   --standard-border-radius: 12px;
@@ -37,18 +37,20 @@ body {
 main {
   display: flex;
   padding: 2rem 1.5rem;
-
 }
 
-h1, h2, h3 {
-  font-family: var(--primary-font-bold)
+h1,
+h2,
+h3 {
+  font-family: var(--primary-font-bold);
 }
 
 h1 {
   font-size: var(--primary-header-size);
 }
 
-h2, h3 {
+h2,
+h3 {
   font-size: var(--secondary-header-size);
 }
 
@@ -58,17 +60,19 @@ button {
   font: inherit;
 }
 
-main input, main textarea {
+main input,
+main textarea {
   background-color: var(--main-bg-color);
   padding: 10px;
   border-radius: var(--standard-border-radius);
   border: none;
   font-family: inherit;
-  transition: border .25s, box-shadow .25s;
+  transition: border 0.25s, box-shadow 0.25s;
   border: 1.5px solid transparent;
 }
 
-main input:focus, main textarea:focus {
+main input:focus,
+main textarea:focus {
   outline: none;
   border-color: rgb(99, 99, 236);
   box-shadow: 0px 3px 15px rgba(59, 131, 246, 0.2);
@@ -82,7 +86,8 @@ main input:focus, main textarea:focus {
   width: 40vw;
 }
 
-#personal-details, .detail-form {
+#personal-details,
+.detail-form {
   background-color: var(--secondary-bg-color);
   display: flex;
   flex-direction: column;
@@ -112,7 +117,7 @@ main input:focus, main textarea:focus {
   color: rgb(176, 176, 176);
   width: 22px;
   height: 22px;
-  transition: color .25s;
+  transition: color 0.25s;
 }
 
 .visibility-btn svg:hover {
@@ -149,11 +154,8 @@ main input:focus, main textarea:focus {
   border-radius: 24px;
 }
 
-
-
-
 label {
-  font-family: 'NotoSansSemiBold', sans-serif;
+  font-family: "NotoSansSemiBold", sans-serif;
 }
 
 .print-btn {
@@ -173,6 +175,37 @@ label {
   opacity: 1;
 }
 
+.print-btn:hover .button-tooltip {
+  visibility: visible;
+}
+
+.button-tooltip {
+  visibility: hidden;
+  position: absolute;
+  color: white;
+  background-color: #124562;
+  padding: 8px;
+  margin: 0 12px;
+  border-radius: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 100%;
+  font-size: 0.8rem;
+  width: 250px;
+  text-align: left;
+}
+
+.button-tooltip::after {
+  border: 8px solid;
+  border-color: transparent transparent transparent #124562;
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  content: ''
+}
+
 .print-btn svg {
   color: white;
   width: 48px;
@@ -183,8 +216,9 @@ label {
   @page {
     size: A4;
   }
-  html, body {
-    height:100vh; 
+  html,
+  body {
+    height: 100vh;
     overflow: hidden;
     visibility: hidden;
   }
@@ -193,8 +227,5 @@ label {
     position: absolute;
     left: 0;
     top: 0;
-
   }
-
-
 }
