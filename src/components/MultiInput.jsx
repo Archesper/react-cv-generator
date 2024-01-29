@@ -97,7 +97,7 @@ export default function MultiInput({
             >
               Cancel
             </button>
-            <button type="submit" class="confirm-btn">Confirm</button>
+            <button type="submit" className="confirm-btn">Confirm</button>
             {inputState.action === "edit" && (
               <button
                 type="button"

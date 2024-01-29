@@ -18,6 +18,7 @@
 :root {
   font-size: 16px;
   --main-bg-color: #f3f4f6;
+  --main-bg-color-half-opacity: rgba(243, 244, 246, 0.5);
   --secondary-bg-color: #ffffff;
   --primary-font: "NotoSans";
   --primary-font-semi-bold: "NotoSansSemiBold";
@@ -200,24 +201,34 @@ label {
   font-family: "NotoSansSemiBold", sans-serif;
 }
 
-.print-btn {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background-color: rgb(93, 93, 196);
+.btn-wrapper {
   display: grid;
   place-content: center;
+  background-color: rgb(93, 93, 196);
   padding: 8px;
   border-radius: 50%;
-  opacity: 0.7;
+  opacity: 0.5;
   cursor: pointer;
 }
 
-.print-btn:hover {
+.show-resume-btn {
+  display: none;
+}
+
+.corner-buttons {
+  display: flex;
+  gap: 8px;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1;
+}
+
+.btn-wrapper:hover {
   opacity: 1;
 }
 
-.print-btn:hover .button-tooltip {
+.btn-wrapper:hover .button-tooltip {
   visibility: visible;
 }
 
@@ -248,7 +259,7 @@ label {
   content: ''
 }
 
-.print-btn svg {
+.btn-wrapper svg {
   color: white;
   width: 48px;
   height: 48px;
@@ -269,5 +280,66 @@ label {
     position: absolute;
     left: 0;
     top: 0;
+  }
+  .button-tooltip {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  main {
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+  }
+
+  #data-input {
+    width: 100%;
+    padding: 0 5vw;
+  }
+
+  .show-resume-btn {
+    display: grid;
+  }
+
+  .btn-wrapper svg {
+    width: 1em;
+    height: 1em;
+  }
+
+  .print-btn {
+    display: none;
+  }
+
+  .corner-buttons {
+    margin-bottom: 1em;
+  }
+
+  .resume-container {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 4vh 4vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--main-bg-color-half-opacity);
+    font-size: min(1vw, 1.4142857vh);
+  }
+  #CV {
+    width: min(100em, 21cm) !important;
+    height: 100% !important;
+    overflow-y: auto !important;
+    font-size: 1.6em;
+  }
+  .resume-name {
+    font-size: 2em;
+  }
+
+  .resume-header-text {
+    font-size: 1.6em;
   }
 }

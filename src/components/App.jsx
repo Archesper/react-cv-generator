@@ -4,6 +4,7 @@ import MultiInput from "./MultiInput";
 import Togglable from "./togglable";
 import { useState } from "react";
 import PrintIcon from "@mui/icons-material/PrintOutlined";
+import VisibilityIcon from "@mui/icons-material/VisibilityOutlined";
 
 export default function App() {
   const defaultResumeData = {
@@ -132,13 +133,26 @@ export default function App() {
   };
   return (
     <>
-      <button onClick={window.print} className="print-btn">
-        <PrintIcon></PrintIcon>
-        <div className="button-tooltip">
-          For best results, use no margins, A4 format, and enable background
-          graphics
-        </div>
-      </button>
+      <div className="corner-buttons">
+        <button  onClick={window.print} className="print-btn btn-wrapper">
+          <PrintIcon></PrintIcon>
+          <div className="button-tooltip">
+            For best results, use no margins, A4 format, and enable background
+            graphics
+          </div>
+        </button>
+        <button onClick={(e) => {
+            const overlay = document.querySelector('.resume-container')
+            const printButton = document.querySelector('.print-btn')
+            const visibility = overlay.style.visibility;
+            overlay.style.visibility = visibility === 'visible' ? 'hidden' : 'visible';
+            printButton.style.display = visibility === 'visible' ? 'none' : 'grid';
+            console.log(printButton);
+            console.log(printButton.style.display);
+          }}  className="btn-wrapper show-resume-btn">
+          <VisibilityIcon ></VisibilityIcon>
+        </button>
+      </div>
       <main>
         <div id="data-input">
           <form id="personal-details">
@@ -185,7 +199,9 @@ export default function App() {
             </Togglable>
           </section>
         </div>
-        <CV data={resumeData}></CV>
+        <div className="resume-container">
+          <CV data={resumeData}></CV>
+        </div>
       </main>
     </>
   );
