@@ -1,5 +1,4 @@
 .togglableContent {
-
   height: 0;
   opacity: 0;
   overflow: hidden;
@@ -23,7 +22,7 @@
   right: 22px;
   cursor: pointer;
   color: rgb(78, 78, 78);
-  transition: transform .25s ease;
+  transition: transform 0.25s ease;
 }
 
 .section-expander svg:hover {

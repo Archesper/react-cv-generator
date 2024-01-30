@@ -1,0 +1,70 @@
+button {
+  cursor: pointer;
+  background-color: inherit;
+  border: none;
+  font: inherit;
+}
+
+.btn-wrapper {
+  display: grid;
+  place-content: center;
+  background-color: rgb(93, 93, 196);
+  padding: 8px;
+  border-radius: 50%;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.show-resume-btn {
+  display: none;
+}
+
+.corner-buttons {
+  display: flex;
+  gap: 8px;
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  z-index: 1;
+}
+
+.btn-wrapper:hover {
+  opacity: 1;
+}
+
+.btn-wrapper:hover .button-tooltip {
+  visibility: visible;
+}
+
+.button-tooltip {
+  visibility: hidden;
+  position: absolute;
+  color: white;
+  background-color: #124562;
+  padding: 8px;
+  margin: 0 12px;
+  border-radius: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 100%;
+  font-size: 0.8rem;
+  width: 250px;
+  text-align: left;
+}
+
+.button-tooltip::after {
+  border: 8px solid;
+  border-color: transparent transparent transparent #124562;
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  content: "";
+}
+
+.btn-wrapper svg {
+  color: white;
+  width: 48px;
+  height: 48px;
+}

@@ -20,8 +20,12 @@
   margin-top: 2.5em;
 }
 
+.resume-name {
+  font-size: 2em;
+}
+
 .resume-header-text {
-  padding: 6px 0;
+  padding: 0.4em 0;
   color: #124562;
   margin-bottom: 0.9em;
   text-align: center;
