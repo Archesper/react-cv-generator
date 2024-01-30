@@ -30,35 +30,41 @@ export default function CV({ data }) {
         </div>
       </div>
       <div className="resume-section">
-        <h3 className="resume-header-text">Education</h3>
-        {education.map((ed) => {
-          return (
-            ed.visible && (
-              <div className="info-group" key={ed.id}>
-                <p>{ed.startDate} - {ed.endDate}</p>
-                <p className="info-group-header">{ed.school}</p>
-                <p>{ed.location}</p>
-                <p>{ed.degree}</p>
-              </div>
-            )
-          );
-        })}
+        {education && <h3 className="resume-header-text">Education</h3>}
+        {education &&
+          education.map((ed) => {
+            return (
+              ed.visible && (
+                <div className="info-group" key={ed.id}>
+                  <p>
+                    {ed.startDate} - {ed.endDate}
+                  </p>
+                  <p className="info-group-header">{ed.school}</p>
+                  <p>{ed.location}</p>
+                  <p>{ed.degree}</p>
+                </div>
+              )
+            );
+          })}
       </div>
       <div className="resume-section">
-        <h3 className="resume-header-text">Experience</h3>
-        {experience.map((exp) => {
-          return (
-            exp.visible && (
-              <div className="info-group" key={exp.id}>
-                <p>{exp.startDate} - {exp.endDate}</p>
-                <p className="info-group-header">{exp.companyName}</p>
-                <p>{exp.location}</p>
-                <p>{exp.positionTitle}</p>
-                <p className="info-group-description">{exp.description}</p>
-              </div>
-            )
-          );
-        })}
+        {experience && <h3 className="resume-header-text">Experience</h3>}
+        {experience &&
+          experience.map((exp) => {
+            return (
+              exp.visible && (
+                <div className="info-group" key={exp.id}>
+                  <p>
+                    {exp.startDate} - {exp.endDate}
+                  </p>
+                  <p className="info-group-header">{exp.companyName}</p>
+                  <p>{exp.location}</p>
+                  <p>{exp.positionTitle}</p>
+                  <p className="info-group-description">{exp.description}</p>
+                </div>
+              )
+            );
+          })}
       </div>
     </div>
   );

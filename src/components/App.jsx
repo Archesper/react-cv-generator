@@ -1,17 +1,18 @@
 import defaultResumeData from "../helpers/defaultData";
+import { useState } from "react";
 import CV from "./CV";
 import InfoInput from "./InfoInput.jsx";
 import MultiInput from "./MultiInput";
 import Togglable from "./togglable";
-import { useState } from "react";
 import PrintIcon from "@mui/icons-material/PrintOutlined";
 import VisibilityIcon from "@mui/icons-material/VisibilityOutlined";
+import RefreshIcon from "@mui/icons-material/RefreshOutlined";
 
 export default function App() {
-  
+  // State variables
   const [resumeData, setResumeData] = useState(defaultResumeData);
+  // Event handlers
   const handlePersonalDataUpdate = (e) => {
-    console.log(e.target.name);
     const newData = { ...resumeData, [e.target.name]: e.target.value };
     setResumeData(newData);
   };
@@ -19,7 +20,6 @@ export default function App() {
     e.preventDefault();
     const targettedSection = e.target.dataset.target;
     const targetID = e.target.dataset.targetid;
-    console.log(targetID);
     const newContent = resumeData[targettedSection].map((item) => {
       if (item.id != targetID) {
         return item;
@@ -38,10 +38,8 @@ export default function App() {
       }
     });
     const newData = { ...resumeData, [targettedSection]: newContent };
-    console.log(newData);
     setResumeData(newData);
   };
-  // This function is for adding new education/experience sections
   const handleContentAdd = (e) => {
     e.preventDefault();
     const targettedSection = e.target.dataset.target;
@@ -67,7 +65,6 @@ export default function App() {
     setResumeData(newData);
   };
   const handleVisibilityToggle = (e) => {
-    console.log(e.currentTarget.dataset);
     const targettedSection = e.currentTarget.dataset.target;
     const targetID = e.currentTarget.dataset.targetid;
     const newItem = {
@@ -93,23 +90,41 @@ export default function App() {
   return (
     <>
       <div className="corner-buttons">
-        <button  onClick={window.print} className="print-btn btn-wrapper">
+        <button onClick={window.print} className="print-btn btn-wrapper">
           <PrintIcon></PrintIcon>
           <div className="button-tooltip">
             For best results, use no margins, A4 format, and enable background
             graphics
           </div>
         </button>
-        <button onClick={(e) => {
-            const overlay = document.querySelector('.resume-container')
-            const printButton = document.querySelector('.print-btn')
+        <button
+          onClick={(e) => {
+            const overlay = document.querySelector(".resume-container");
+            const printButton = document.querySelector(".print-btn");
             const visibility = overlay.style.visibility;
-            overlay.style.visibility = visibility === 'visible' ? 'hidden' : 'visible';
-            printButton.style.display = visibility === 'visible' ? 'none' : 'grid';
-            console.log(printButton);
-            console.log(printButton.style.display);
-          }}  className="btn-wrapper show-resume-btn">
-          <VisibilityIcon ></VisibilityIcon>
+            overlay.style.visibility =
+              visibility === "visible" ? "hidden" : "visible";
+            printButton.style.display =
+              visibility === "visible" ? "none" : "grid";
+          }}
+          className="btn-wrapper show-resume-btn"
+        >
+          <VisibilityIcon></VisibilityIcon>
+        </button>
+        <button
+          onClick={(e) => {
+            setResumeData({
+              fullName: "",
+              phoneNumber: "",
+              email: "",
+              location: "",
+              education: [],
+              experience: [],
+            });
+          }}
+          className="btn-wrapper refresh-btn"
+        >
+          <RefreshIcon></RefreshIcon>
         </button>
       </div>
       <main>

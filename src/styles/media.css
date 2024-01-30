@@ -9,7 +9,7 @@
     width: 100%;
     padding: 0 5vw;
   }
-  
+
   .show-resume-btn {
     display: grid;
   }
@@ -56,7 +56,12 @@
   .resume-header-text {
     font-size: 1.6em;
   }
-  
+}
+
+@media screen and (max-width: 500px) {
+  .corner-buttons {
+    flex-direction: column;
+  }
 }
 
 @media screen and (min-width: 1600px) {

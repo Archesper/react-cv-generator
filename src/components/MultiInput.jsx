@@ -24,28 +24,34 @@ export default function MultiInput({
       i += 1;
     }
     secondWord = str.slice(i);
-    return firstWord + " " + secondWord
+    return firstWord + " " + secondWord;
   };
   const [inputState, setInputState] = useState({ action: "default" });
-  if (inputState.action === "default") {
+  // The first condition is for when the app data is reset while the input was editing
+  // Somewhat hacky fix as there is no way to alter state from the parent
+  if (
+    (inputState.action === "edit" && content.length === 0) ||
+    inputState.action === "default"
+  ) {
     return (
       <>
         <div className="info-container">
-          {content.map((item) => {
-            return (
-              <Info
-                visibilityToggler={visiblityToggler}
-                visible={item.visible}
-                target={target}
-                targetid={item.id}
-                onClick={() => {
-                  setInputState({ action: "edit", id: item.id });
-                }}
-                key={item.id}
-                name={item.name}
-              ></Info>
-            );
-          })}
+          {content &&
+            content.map((item) => {
+              return (
+                <Info
+                  visibilityToggler={visiblityToggler}
+                  visible={item.visible}
+                  target={target}
+                  targetid={item.id}
+                  onClick={() => {
+                    setInputState({ action: "edit", id: item.id });
+                  }}
+                  key={item.id}
+                  name={item.name}
+                ></Info>
+              );
+            })}
         </div>
         <button
           className="info-add-btn"
@@ -92,16 +98,18 @@ export default function MultiInput({
           <div className="form-btn-grp">
             <button
               type="button"
-              class="cancel-btn"
+              className="cancel-btn"
               onClick={() => setInputState({ action: "default" })}
             >
               Cancel
             </button>
-            <button type="submit" className="confirm-btn">Confirm</button>
+            <button type="submit" className="confirm-btn">
+              Confirm
+            </button>
             {inputState.action === "edit" && (
               <button
                 type="button"
-                class='delete-btn'
+                className="delete-btn"
                 data-target={target}
                 data-targetid={inputState.id}
                 onClick={deleteHandler}

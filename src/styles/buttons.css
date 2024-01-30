@@ -15,6 +15,10 @@ button {
   cursor: pointer;
 }
 
+.refresh-btn {
+  background-color: rgb(216, 18, 18);
+}
+
 .show-resume-btn {
   display: none;
 }
