@@ -1,3 +1,4 @@
+import defaultResumeData from "../helpers/defaultData";
 import CV from "./CV";
 import InfoInput from "./InfoInput.jsx";
 import MultiInput from "./MultiInput";
@@ -7,49 +8,7 @@ import PrintIcon from "@mui/icons-material/PrintOutlined";
 import VisibilityIcon from "@mui/icons-material/VisibilityOutlined";
 
 export default function App() {
-  const defaultResumeData = {
-    fullName: "Balhaoui Walid",
-    phoneNumber: "0671711008",
-    email: "wbhaoui@gmail.com",
-    address: "Casablanca, Morocco",
-    education: [
-      {
-        id: 0,
-        school: "Maarif",
-        name: "Maarif", // For MultiInput component to distinguish
-        // between "education" and "experience" objects
-        degree: "Bac SMA",
-        startDate: "09/2018",
-        endDate: "06/2021",
-        location: "Mohammedia, Morocco",
-        visible: true,
-      },
-      {
-        id: 1,
-        school: "Maarif",
-        name: "Maarif", // For MultiInput component to distinguish
-        // between "education" and "experience" objects
-        degree: "Bac SMA",
-        startDate: "09/2018",
-        endDate: "06/2021",
-        location: "Mohammedia, Morocco",
-        visible: true,
-      },
-    ],
-    experience: [
-      {
-        id: 0,
-        companyName: "Orange",
-        name: "Orange",
-        positionTitle: "Backend Engineer",
-        startDate: "07/2024",
-        endDate: "present",
-        location: "Casablanca, morocco",
-        description: "ratatata",
-        visible: true,
-      },
-    ],
-  };
+  
   const [resumeData, setResumeData] = useState(defaultResumeData);
   const handlePersonalDataUpdate = (e) => {
     console.log(e.target.name);
