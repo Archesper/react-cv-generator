@@ -3,7 +3,7 @@ import { useState } from "react";
 import CV from "./CV";
 import InfoInput from "./InfoInput.jsx";
 import MultiInput from "./MultiInput";
-import Togglable from "./togglable";
+import Togglable from "./Togglable";
 import PrintIcon from "@mui/icons-material/PrintOutlined";
 import VisibilityIcon from "@mui/icons-material/VisibilityOutlined";
 import RefreshIcon from "@mui/icons-material/RefreshOutlined";
