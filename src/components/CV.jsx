@@ -30,8 +30,8 @@ export default function CV({ data }) {
         </div>
       </div>
       <div className="resume-section">
-        {education && <h3 className="resume-header-text">Education</h3>}
-        {education &&
+        {education.filter((ed) => ed.visible).length > 0 && <h3 className="resume-header-text">Education</h3>}
+        {education.length > 0 &&
           education.map((ed) => {
             return (
               ed.visible && (
@@ -48,8 +48,8 @@ export default function CV({ data }) {
           })}
       </div>
       <div className="resume-section">
-        {experience && <h3 className="resume-header-text">Experience</h3>}
-        {experience &&
+        {experience.filter((exp) => exp.visible).length > 0 && <h3 className="resume-header-text">Experience</h3>}
+        {experience.length > 0 &&
           experience.map((exp) => {
             return (
               exp.visible && (
