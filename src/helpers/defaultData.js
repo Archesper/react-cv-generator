@@ -1,5 +1,5 @@
 const defaultResumeData = {
-  fullName: undefined,
+  fullName: "John Doe",
   phoneNumber: "0612345678",
   email: "doejohn@mail.com",
   address: "City, Country",
